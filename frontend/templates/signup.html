@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | MindCare AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/auth.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-circle circle1"></div>
+<div class="background-circle circle2"></div>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h1>🧠 MindCare AI</h1>
+
+        <h2>Create Your Account</h2>
+
+        <p class="subtitle">
+            Begin your journey towards better mental wellness.
+        </p>
+
+        <form id="signupForm">
+
+            <div class="input-group">
+
+                <label for="full_name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="full_name"
+                    placeholder="Enter your full name"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="email">Email Address</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required>
+
+            </div>
+                        <div class="input-group">
+
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label for="confirm_password">Confirm Password</label>
+
+                <input
+                    type="password"
+                    id="confirm_password"
+                    placeholder="Confirm your password"
+                    required>
+
+            </div>
+
+            <button
+                type="submit"
+                class="auth-btn">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+        <p class="switch-page">
+
+            Already have an account?
+
+            <a href="/login">Login</a>
+
+        </p>
+                <div id="message" class="message"></div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+
+</body>
+</html>

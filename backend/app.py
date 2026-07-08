@@ -1,22 +1,285 @@
-from flask import Flask, request, jsonify
+from flask import (
+    Flask,
+    request,
+    jsonify,
+    render_template,
+    session,
+    redirect,
+    send_file
+)
+
+from pdf_report import generate_pdf
 from flask_cors import CORS
 
+
+from chatbot import chatbot_response
+
+
+from trend import get_trend
 from predictor import predict_mental_state
 from utils import calculate_scores
 from recommendation import get_recommendation
+from auth import auth
+from dashboard import get_dashboard_stats
+from chart import get_chart_data
+from assessment_db import save_assessment
+from history import get_assessment_history
+from profile import get_user_profile
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="../frontend/templates",
+    static_folder="../frontend/static"
+)
+
 CORS(app)
+
+app.secret_key = "mindcare_ai_secret_key_2026"
+
+app.register_blueprint(auth)
+
 
 # ==========================
 # Home Route
 # ==========================
 @app.route("/", methods=["GET"])
 def home():
+    return render_template("landing.html")
+
+
+# ==========================
+# Signup Page
+# ==========================
+@app.route("/signup")
+def signup_page():
+    return render_template("signup.html")
+
+
+# ==========================
+# Login Page
+# ==========================
+@app.route("/login")
+def login_page():
+    return render_template("login.html")
+
+
+# ==========================
+# Dashboard Page
+# ==========================
+@app.route("/dashboard")
+def dashboard():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    return render_template("dashboard.html")
+
+# ==========================
+# Assessment Page
+# ==========================
+@app.route("/assessment")
+def assessment():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    return render_template("assessment.html")
+
+
+# ==========================
+# Profile Page
+# ==========================
+@app.route("/profile")
+def profile_page():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    return render_template("profile.html")
+
+# ==========================
+# Chatbot Page
+# ==========================
+@app.route("/chatbot")
+def chatbot():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    return render_template("chatbot.html")
+
+
+# ==========================
+# History Page
+# ==========================
+@app.route("/history-page")
+def history_page():
+
+    if "user_id" not in session:
+        return redirect("/login")
+
+    return render_template("history.html")
+
+
+# ==========================
+# Assessment History API
+# ==========================
+@app.route("/history")
+def history():
+
+    # Logged-in user
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    history = get_assessment_history(user_id)
+
     return jsonify({
         "status": "success",
-        "message": "Mental Health Counseling Tool Backend is Running"
+        "history": history
     })
+
+
+@app.route("/profile-data")
+def profile_data():
+
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    user = get_user_profile(user_id)
+
+    if not user:
+        return jsonify({
+            "status": "error",
+            "message": "User not found."
+        }), 404
+
+    return jsonify({
+        "status": "success",
+        "user": user
+    })
+
+
+# ==========================
+# Dashboard API
+# ==========================
+@app.route("/dashboard-data")
+def dashboard_data():
+
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    stats = get_dashboard_stats(user_id)
+
+    return jsonify({
+        "status": "success",
+        "dashboard": stats
+    })
+
+
+# ==========================
+# Dashboard Chart API
+# ==========================
+@app.route("/chart-data")
+def chart_data():
+
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    chart = get_chart_data(user_id)
+
+    return jsonify({
+        "status": "success",
+        "chart": chart
+    })
+
+
+# ==========================
+# Trend API
+# ==========================
+@app.route("/trend-data")
+def trend_data():
+
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    trend = get_trend(user_id)
+
+    return jsonify({
+        "status": "success",
+        "trend": trend
+    })
+
+# ==========================
+# Chatbot API
+# ==========================
+@app.route("/chat", methods=["POST"])
+def chat():
+
+    if "user_id" not in session:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    data = request.get_json()
+
+    message = data.get("message", "")
+
+    reply = chatbot_response(message)
+
+    return jsonify({
+        "status": "success",
+        "reply": reply
+    })
+
+
+# ==========================
+# Download PDF Report
+# ==========================
+@app.route("/download-report")
+def download_report():
+
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "status": "error",
+            "message": "Please login first."
+        }), 401
+
+    pdf = generate_pdf(user_id)
+
+    return send_file(
+        pdf,
+        as_attachment=True,
+        download_name="MindCare_AI_Report.pdf",
+        mimetype="application/pdf"
+    )
 
 
 # ==========================
@@ -96,6 +359,7 @@ def predict():
         }
 
         for field, (minimum, maximum) in validations.items():
+
             value = data[field]
 
             if not isinstance(value, (int, float)):
@@ -124,6 +388,29 @@ def predict():
         # Recommendation
         recommendation = get_recommendation(prediction)
 
+        # ====================================
+        # SAVE ASSESSMENT
+        # ====================================
+
+        # Logged-in user
+        user_id = session.get("user_id")
+
+        if not user_id:
+            return jsonify({
+                "status": "error",
+                "message": "Please login first."
+            }), 401
+
+        save_assessment(
+            user_id=user_id,
+            mental_state=prediction,
+            mental_score=scores["mental_score"],
+            anxiety_score=scores["anxiety_score"],
+            depression_score=scores["depression_score"],
+            risk_level=recommendation["risk_level"],
+            recommendation=recommendation["advice"]
+        )
+
         return jsonify({
             "status": "success",
             "mental_state": prediction,
@@ -135,10 +422,21 @@ def predict():
         })
 
     except Exception as e:
+        import traceback
+
+        print("\n========== ERROR IN /predict ==========")
+        traceback.print_exc()
+        print("=======================================\n")
+
         return jsonify({
             "status": "error",
             "message": str(e)
         }), 500
+
+print("\n========== REGISTERED ROUTES ==========")
+for rule in app.url_map.iter_rules():
+    print(rule)
+print("=======================================\n")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mental Health Counseling Tool</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>🧠 Mental Health Counseling Tool</h1>
+
+        <p>
+            AI & Machine Learning Based Mental Health Assessment
+        </p>
+
+    </header>
+
+    <form id="assessmentForm">
+
+        <div class="section">
+
+            <h2>Basic Information</h2>
+
+            <div class="grid">
+
+                <div class="form-group">
+
+                    <label>Age</label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        min="18"
+                        max="60"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Gender</label>
+
+                    <select id="gender">
+
+                        <option value="Male">Male</option>
+
+                        <option value="Female">Female</option>
+
+                        <option value="Other">Other</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Employment Status</label>
+
+                    <select id="employment_status">
+
+                        <option>Student</option>
+
+                        <option>Employed</option>
+
+                        <option>Self-Employed</option>
+
+                        <option>Unemployed</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Relationship Status</label>
+
+                    <select id="relationship_status">
+
+                        <option>Single</option>
+
+                        <option>Married</option>
+
+                        <option>In a Relationship</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="section">
+
+            <h2>Lifestyle</h2>
+
+            <div class="grid">
+
+                <div class="form-group">
+
+                    <label>Sleep Hours</label>
+
+                    <input
+                        type="number"
+                        id="sleep_hours"
+                        min="0"
+                        max="24"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Sleep Quality (1-5)</label>
+
+                    <input
+                        type="number"
+                        id="sleep_quality"
+                        min="1"
+                        max="5"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Food Quality (1-5)</label>
+
+                    <input
+                        type="number"
+                        id="food_quality"
+                        min="1"
+                        max="5"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Water Intake (1-5)</label>
+
+                    <input
+                        type="number"
+                        id="water_intake"
+                        min="1"
+                        max="5"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Exercise Hours</label>
+
+                    <input
+                        type="number"
+                        id="exercise_hours"
+                        min="0"
+                        max="24"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Screen Time</label>
+
+                    <input
+                        type="number"
+                        id="screen_time"
+                        min="0"
+                        max="24"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Hobbies Time</label>
+
+                    <input
+                        type="number"
+                        id="hobbies_time"
+                        min="0"
+                        max="24"
+                        required>
+
+                </div>
+                            </div>
+
+        </div>
+
+
+
+
+
+        <div class="section">
+
+            <h2>Mental Health Factors</h2>
+
+            <div class="grid">
+
+                <div class="form-group">
+
+                    <label>Work Stress (1-10)</label>
+
+                    <input
+                        type="number"
+                        id="work_stress"
+                        min="1"
+                        max="10"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Academic Pressure (1-10)</label>
+
+                    <input
+                        type="number"
+                        id="academic_pressure"
+                        min="1"
+                        max="10"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Financial Stress (1-5)</label>
+
+                    <input
+                        type="number"
+                        id="financial_stress"
+                        min="1"
+                        max="5"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Social Interaction (1-5)</label>
+
+                    <input
+                        type="number"
+                        id="social_interaction"
+                        min="1"
+                        max="5"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Family Support (1-5)</label>
+
+                    <input
+                        type="number"
+                        id="family_support"
+                        min="1"
+                        max="5"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Daily Productivity (1-10)</label>
+
+                    <input
+                        type="number"
+                        id="daily_productivity"
+                        min="1"
+                        max="10"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Health Issues</label>
+
+                    <select id="health_issues">
+
+                        <option value="0">No</option>
+
+                        <option value="1">Yes</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="button-container">
+
+            <button
+                type="submit"
+                id="predictBtn">
+
+                Predict Mental Health
+
+            </button>
+
+        </div>
+
+    </form>
+
+
+
+
+
+    <div
+        id="loading"
+        class="loading">
+
+        Predicting...
+
+    </div>
+
+
+
+
+
+    <div
+        id="result"
+        class="result-card">
+
+        <h2>Assessment Result</h2>
+
+        <div class="result-grid">
+
+            <div class="card">
+
+                <h3>Mental State</h3>
+
+                <p id="mental_state">-</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Mental Score</h3>
+
+                <p id="mental_score">-</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Anxiety Score</h3>
+
+                <p id="anxiety_score">-</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Depression Score</h3>
+
+                <p id="depression_score">-</p>
+
+            </div>
+
+        </div>
+                <div class="recommendation-box">
+
+            <h3>Risk Level</h3>
+
+            <p id="risk_level">-</p>
+
+            <h3>Recommendation</h3>
+
+            <p id="recommendation">
+                Your personalized recommendation will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+    <footer>
+
+        <p>
+            © 2026 Mental Health Counseling Tool | AI & Machine Learning Project
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

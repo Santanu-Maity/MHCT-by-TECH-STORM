@@ -1,0 +1,30 @@
+body{
+    font-family:Poppins,sans-serif;
+    background:#f4f7fb;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.profile-card{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    width:420px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.info{
+    margin-top:20px;
+}
+
+label{
+    font-weight:600;
+    color:#555;
+}
+
+p{
+    font-size:18px;
+    margin-top:5px;
+}

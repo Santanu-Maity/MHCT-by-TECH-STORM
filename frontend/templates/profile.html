@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | MindCare AI</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/profile.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-circle circle1"></div>
+<div class="background-circle circle2"></div>
+
+<div class="container">
+
+    <div class="profile-card">
+
+        <h1>👤 My Profile</h1>
+
+        <div class="avatar">
+            👤
+        </div>
+
+        <div class="info">
+
+            <label>Full Name</label>
+
+            <p id="fullName">Loading...</p>
+
+        </div>
+
+        <div class="info">
+
+            <label>Email</label>
+
+            <p id="email">Loading...</p>
+
+        </div>
+
+        <div class="info">
+
+            <label>User ID</label>
+
+            <p id="userId">Loading...</p>
+
+        </div>
+
+        <div class="info">
+
+            <label>Member Since</label>
+
+            <p id="createdAt">Loading...</p>
+
+        </div>
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='/dashboard'">
+
+            ← Back to Dashboard
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | MindCare AI</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-circle circle1"></div>
+<div class="background-circle circle2"></div>
+
+<nav class="navbar">
+
+    <div class="logo">
+        🧠 <span>MindCare AI</span>
+    </div>
+
+    <button id="logoutBtn">
+        Logout
+    </button>
+
+</nav>
+
+<div class="dashboard">
+
+    <!-- Welcome Card -->
+    <div class="welcome-card">
+
+        <h1>Welcome 👋</h1>
+
+        <p>
+            We're glad to see you again.
+            Let's take care of your mental wellness today.
+        </p>
+
+    </div>
+
+    <!-- Dashboard Statistics -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>Total Assessments</h3>
+            <h2 id="totalAssessments">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Latest Result</h3>
+            <h2 id="latestState">-</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Highest Risk</h3>
+            <h2 id="highestRisk">-</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>Last Assessment</h3>
+            <h2 id="latestDate">-</h2>
+        </div>
+
+        <div class="stat-card">
+
+            <h3>📈 Trend</h3>
+
+            <p id="trend">
+                Loading...
+            </p>
+
+            <small id="trendChange">
+                Loading...
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="cards-grid">
+
+        <a href="/assessment" class="card">
+
+            <div class="icon">📝</div>
+
+            <h3>Start Assessment</h3>
+
+            <p>
+                Take a quick mental health assessment and receive
+                AI-powered insights and recommendations.
+            </p>
+
+        </a>
+
+        <a href="/chatbot" class="card">
+
+            <div class="icon">🤖</div>
+
+            <h3>AI Chatbot</h3>
+
+            <p>
+                Chat with our AI assistant for guidance and support
+                through an interactive conversation.
+            </p>
+
+        </a>
+
+        <a href="/history-page" class="card">
+
+            <div class="icon">📊</div>
+
+            <h3>Assessment History</h3>
+
+            <p>
+                Review your previous assessments and monitor your
+                mental wellness over time.
+            </p>
+
+        </a>
+
+        <!-- NEW DOWNLOAD REPORT CARD -->
+
+        <a href="/download-report" class="card">
+
+            <div class="icon">📄</div>
+
+            <h3>Download Report</h3>
+
+            <p>
+                Download your complete assessment history as a
+                professional PDF report.
+            </p>
+
+        </a>
+
+        <a href="/profile" class="card">
+
+            <div class="icon">👤</div>
+
+            <h3>My Profile</h3>
+
+            <p>
+                View your account details and customize your
+                MindCare AI experience.
+            </p>
+
+        </a>
+
+    </div>
+
+    <!-- Chart -->
+
+    <div class="chart-card">
+
+        <h2>📈 Mental Wellness Trend</h2>
+
+        <canvas id="mentalChart"></canvas>
+
+    </div>
+
+    <!-- Daily Tip -->
+
+    <div class="tip-card">
+
+        <h2>💡 Daily Wellness Tip</h2>
+
+        <p>
+            Small daily habits can make a big difference.
+            Take a short walk, drink enough water,
+            and spend a few minutes away from screens.
+        </p>
+
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 MindCare AI | Mental Health Counseling Tool
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

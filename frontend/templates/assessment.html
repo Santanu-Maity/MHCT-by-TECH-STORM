@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mental Health Assessment | MindCare AI</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/assessment.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-circle circle1"></div>
+<div class="background-circle circle2"></div>
+
+<div class="assessment-container">
+
+    <div class="assessment-card">
+
+        <h1>🧠 Mental Health Assessment</h1>
+
+        <p>
+            Answer a few questions honestly to receive personalized AI-powered insights.
+        </p>
+
+        <div class="progress-container">
+
+            <div id="progressBar" class="progress-bar"></div>
+
+        </div>
+
+        <div id="questionContainer">
+
+        </div>
+       <div class="navigation-buttons">
+
+    <button id="prevBtn" class="nav-btn">
+        ← Previous
+    </button>
+
+    <button id="nextBtn" class="nav-btn">
+        Next →
+    </button>
+
+    <button id="submitBtn" class="submit-btn">
+        Submit Assessment
+    </button>
+
+</div>
+
+<!-- Loading Spinner -->
+
+<div id="loadingContainer" class="loading-container">
+
+    <div class="loader"></div>
+
+    <h2>Analyzing your mental health...</h2>
+
+    <p>
+        Our AI is generating personalized insights.
+    </p>
+
+</div>
+
+<!-- Result -->
+
+<div id="resultContainer" class="result-container"></div>
+
+<div id="resultActions" style="display:none; text-align:center; margin-top:20px;">
+
+    <button id="downloadBtn" class="submit-btn">
+        📄 Download Report
+    </button>
+
+    <button id="dashboardBtn" class="nav-btn">
+        🏠 Back to Dashboard
+    </button>
+
+</div>
+
+    </div>
+
+</div>
+
+<!-- Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<script src="{{ url_for('static', filename='js/assessment.js') }}"></script>
+
+</body>
+</html>
