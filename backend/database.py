@@ -8,6 +8,11 @@ os.makedirs(DATABASE_DIR, exist_ok=True)
 
 DB_PATH = os.path.join(DATABASE_DIR, "database.db")
 
+print("BASE_DIR:", BASE_DIR)
+print("DATABASE_DIR:", DATABASE_DIR)
+print("DB_PATH:", DB_PATH)
+print("DATABASE_DIR exists:", os.path.exists(DATABASE_DIR))
+
 
 def get_connection():
     conn = sqlite3.connect(DB_PATH)
