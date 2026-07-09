@@ -9,7 +9,7 @@ from reportlab.platypus import (
     Paragraph
 )
 
-from database import get_connection
+from backend.database import get_connection
 
 
 def generate_pdf(user_id):

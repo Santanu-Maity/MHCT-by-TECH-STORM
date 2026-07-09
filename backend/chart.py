@@ -1,4 +1,4 @@
-from database import get_connection
+from backend.database import get_connection
 
 
 def get_chart_data(user_id):

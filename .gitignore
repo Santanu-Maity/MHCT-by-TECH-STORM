@@ -54,6 +54,7 @@ dist/
 
 # ============================================
 # Database (Ignore only if database is generated)
+database/database.db
 # Uncomment if you DON'T want to commit it
 # ============================================
 # database/database.db

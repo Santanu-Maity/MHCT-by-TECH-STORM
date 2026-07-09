@@ -8,23 +8,21 @@ from flask import (
     send_file
 )
 
-from pdf_report import generate_pdf
+from backend.pdf_report import generate_pdf
 from flask_cors import CORS
 
 
-from chatbot import chatbot_response
-
-
-from trend import get_trend
-from predictor import predict_mental_state
-from utils import calculate_scores
-from recommendation import get_recommendation
-from auth import auth
-from dashboard import get_dashboard_stats
-from chart import get_chart_data
-from assessment_db import save_assessment
-from history import get_assessment_history
-from profile import get_user_profile
+from backend.chatbot import chatbot_response
+from backend.trend import get_trend
+from backend.predictor import predict_mental_state
+from backend.utils import calculate_scores
+from backend.recommendation import get_recommendation
+from backend.auth import auth
+from backend.dashboard import get_dashboard_stats
+from backend.chart import get_chart_data
+from backend.assessment_db import save_assessment
+from backend.history import get_assessment_history
+from backend.profile import get_user_profile
 
 app = Flask(
     __name__,
