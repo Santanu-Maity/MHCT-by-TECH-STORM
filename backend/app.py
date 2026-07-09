@@ -23,6 +23,7 @@ from backend.chart import get_chart_data
 from backend.assessment_db import save_assessment
 from backend.history import get_assessment_history
 from backend.profile import get_user_profile
+from backend.database import initialize_database
 
 app = Flask(
     __name__,
@@ -35,6 +36,9 @@ CORS(app)
 app.secret_key = "mindcare_ai_secret_key_2026"
 
 app.register_blueprint(auth)
+
+# Create database tables if they don't exist
+initialize_database()
 
 
 # ==========================
