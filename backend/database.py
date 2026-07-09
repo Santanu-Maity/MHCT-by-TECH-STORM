@@ -1,18 +1,19 @@
-import sqlite3
 import os
+import sqlite3
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RENDER_DISK = os.environ.get("RENDER_DISK_PATH")
 
-DATABASE_DIR = os.path.join(BASE_DIR, "database")
+if RENDER_DISK:
+    DATABASE_DIR = RENDER_DISK
+else:
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DATABASE_DIR = os.path.join(BASE_DIR, "database")
+
 os.makedirs(DATABASE_DIR, exist_ok=True)
 
 DB_PATH = os.path.join(DATABASE_DIR, "database.db")
 
-print("BASE_DIR:", BASE_DIR)
-print("DATABASE_DIR:", DATABASE_DIR)
 print("DB_PATH:", DB_PATH)
-print("DATABASE_DIR exists:", os.path.exists(DATABASE_DIR))
-
 
 def get_connection():
     conn = sqlite3.connect(DB_PATH)
