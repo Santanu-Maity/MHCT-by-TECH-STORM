@@ -1,95 +1,95 @@
-# MHCT-by-TECH-STORM
-# 🧠 Mental Health Counseling Tool (MHCT)
+# 🧠 MindCare AI – Mental Health Counseling Tool
 
-A Machine Learning-based Mental Health Counseling Tool that predicts a user's mental health status based on lifestyle, personal, and psychological factors. The system provides a mental health assessment along with a risk level and personalized recommendations through a Flask REST API.
-
----
-
-# 📌 Project Overview
-
-Mental health has become an important concern for students and working professionals. This project uses Machine Learning to analyze various lifestyle and mental health indicators and predicts the user's mental health condition.
-
-The backend is developed using Flask, while the Machine Learning model is trained using Scikit-learn. The frontend (developed separately) communicates with the backend through REST APIs.
+MindCare AI is an AI-powered Mental Health Counseling Tool that helps users assess their mental well-being through a structured questionnaire and Machine Learning prediction model. The application provides personalized recommendations, tracks assessment history, visualizes progress, and generates downloadable PDF reports.
 
 ---
 
-# 🎯 Objectives
+## 📌 Features
 
-* Predict an individual's mental health status.
-* Estimate Mental Score, Anxiety Score, and Depression Score.
-* Provide personalized recommendations based on prediction.
-* Demonstrate the integration of Machine Learning with a web application.
-
----
-
-# ✨ Features
-
-* Machine Learning-based prediction.
-* RESTful API using Flask.
-* Random Forest Classifier.
-* Synthetic dataset generation (3000 records).
-* Input validation.
-* Mental Score calculation.
-* Anxiety Score calculation.
-* Depression Score calculation.
-* Personalized recommendations.
-* Health check endpoint.
-* Easy frontend integration.
+* 🔐 User Authentication (Signup/Login)
+* 📝 Mental Health Assessment
+* 🤖 Machine Learning Based Prediction
+* 📊 Interactive Dashboard
+* 📈 Progress & Trend Analysis
+* 💬 AI Chatbot Support
+* 📄 PDF Assessment Report Generation
+* 👤 User Profile Management
+* 📚 Assessment History
+* 📱 Responsive Modern UI
 
 ---
 
-# 🛠️ Technology Stack
+## 🛠️ Tech Stack
 
-## Backend
+### Frontend
+
+* HTML5
+* CSS3
+* JavaScript
+* Chart.js
+
+### Backend
 
 * Python
 * Flask
 * Flask-CORS
 
-## Machine Learning
+### Machine Learning
 
 * Scikit-learn
 * Pandas
 * NumPy
 * Joblib
 
-## Frontend
+### Database
 
-* HTML
-* CSS
-* JavaScript
+* SQLite
+
+### Other Libraries
+
+* ReportLab
+* Bcrypt
+* Matplotlib
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
-```
+```text
 MHCT-by-TECH-STORM/
 │
 ├── backend/
 │   ├── app.py
+│   ├── auth.py
 │   ├── predictor.py
+│   ├── chatbot.py
 │   ├── recommendation.py
+│   ├── database.py
+│   ├── dashboard.py
+│   ├── assessment_db.py
+│   ├── history.py
+│   ├── profile.py
+│   ├── chart.py
+│   ├── trend.py
+│   ├── pdf_report.py
 │   └── utils.py
+│
+├── frontend/
+│   ├── templates/
+│   └── static/
+│       ├── css/
+│       └── js/
+│
+├── ml/
+│   ├── dataset/
+│   ├── models/
+│   ├── utils/
+│   └── train_model.py
 │
 ├── database/
 │   └── database.db
 │
-├── frontend/
-│   ├── static/
-│   └── templates/
-│
-├── ml/
-│   ├── dataset/
-│   │   ├── dataset.csv
-│   │   └── generate_dataset.py
-│   │
-│   ├── models/
-│   │   ├── model.pkl
-│   │   ├── evaluate.py
-│   │   └── predict.py
-│   │
-│   └── train_model.py
+├── docs/
 │
 ├── requirements.txt
 ├── README.md
@@ -98,57 +98,50 @@ MHCT-by-TECH-STORM/
 
 ---
 
-# ⚙️ Installation
+## ⚙️ Installation
 
-Clone the repository:
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Santanu-Maity/MHCT-by-TECH-STORM.git
 ```
 
-Move into the project folder:
+### 2. Move into the Project Directory
 
 ```bash
 cd MHCT-by-TECH-STORM
 ```
 
-Create a virtual environment:
+### 3. Create a Virtual Environment
+
+#### Windows
 
 ```bash
 python -m venv venv
-```
-
-Activate the virtual environment:
-
-### Windows
-
-```bash
 venv\Scripts\activate
 ```
 
-### Linux / macOS
+#### Linux/macOS
 
 ```bash
+python3 -m venv venv
 source venv/bin/activate
 ```
 
-Install dependencies:
+### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-# ▶️ Running the Backend
-
-Start the Flask server:
+### 5. Run the Flask Server
 
 ```bash
-python backend/app.py
+cd backend
+python app.py
 ```
 
-The backend will run at:
+The application will be available at:
 
 ```
 http://127.0.0.1:5000
@@ -156,116 +149,103 @@ http://127.0.0.1:5000
 
 ---
 
-# 🔗 API Endpoints
+## 🚀 Deployment
 
-## Home
+The project is deployed using:
 
-**GET /**
-
-Returns the API status.
-
----
-
-## Health Check
-
-**GET /health**
-
-Example Response:
-
-```json
-{
-    "status": "healthy",
-    "service": "Mental Health Counseling Tool API",
-    "model_loaded": true
-}
-```
+* Backend: Render
+* Repository: GitHub
 
 ---
 
-## Predict Mental Health
+## 🧠 Machine Learning Model
 
-**POST /predict**
+The prediction model analyzes user responses based on lifestyle, stress, sleep, work, social interaction, and health-related factors.
 
-Request Body:
+Possible prediction categories include:
 
-```json
-{
-    "age":22,
-    "gender":"Male",
-    "employment_status":"Student",
-    "relationship_status":"Single",
-    "sleep_hours":7,
-    "sleep_quality":4,
-    "food_quality":4,
-    "water_intake":4,
-    "exercise_hours":2,
-    "screen_time":6,
-    "hobbies_time":2,
-    "work_stress":5,
-    "academic_pressure":6,
-    "financial_stress":2,
-    "social_interaction":4,
-    "family_support":4,
-    "daily_productivity":7,
-    "health_issues":0
-}
-```
-
-Example Response:
-
-```json
-{
-    "status":"success",
-    "mental_state":"Moderate Stress",
-    "mental_score":100,
-    "anxiety_score":83,
-    "depression_score":45,
-    "risk_level":"Medium",
-    "recommendation":"You appear to be experiencing moderate stress. Try regular exercise, meditation, proper sleep, and speak with trusted friends or family if needed."
-}
-```
+* Healthy
+* Mild Stress
+* Moderate Stress
+* Severe Stress
 
 ---
 
-# 🤖 Machine Learning Model
+## 📊 System Modules
 
-* Algorithm: Random Forest Classifier
-* Dataset Size: 3000 Records
-* Model Serialization: Joblib (`model.pkl`)
-* Data Processing:
-
-  * One-Hot Encoding
-  * Numerical Feature Processing
-  * Train-Test Split
-* Target Variable:
-
-  * Good
-  * Moderate Stress
-  * High Stress
-  * Severe Risk
+* User Authentication
+* Mental Health Assessment
+* ML Prediction Engine
+* Recommendation System
+* Dashboard Analytics
+* Trend Analysis
+* Assessment History
+* Profile Management
+* AI Chatbot
+* PDF Report Generation
 
 ---
 
-# 📈 Future Enhancements
+## 🔒 Security Features
 
-* User authentication.
-* Real-world clinical dataset integration.
-* Dashboard with charts and analytics.
-* Appointment booking with counselors.
-* Email notifications.
-* AI chatbot integration.
-* Deployment to a cloud platform.
+* Password Hashing using Bcrypt
+* Session-Based Authentication
+* Server-side Validation
+* Input Validation
+* Secure Database Access
 
 ---
 
-# 👨‍💻 Team
+## 📄 API Endpoints
 
-**Project:** Mental Health Counseling Tool (MHCT)
-
-Developed by **TECH STORM** as a B.Tech final-year project.
+| Method | Endpoint         | Description              |
+| ------ | ---------------- | ------------------------ |
+| GET    | /                | Landing Page             |
+| GET    | /login           | Login Page               |
+| GET    | /signup          | Signup Page              |
+| POST   | /login           | User Login               |
+| POST   | /signup          | User Registration        |
+| POST   | /logout          | Logout                   |
+| POST   | /predict         | Mental Health Prediction |
+| GET    | /dashboard-data  | Dashboard Statistics     |
+| GET    | /chart-data      | Assessment Chart         |
+| GET    | /trend-data      | Trend Analysis           |
+| GET    | /history         | Assessment History       |
+| GET    | /profile-data    | User Profile             |
+| POST   | /chat            | AI Chatbot               |
+| GET    | /download-report | Download PDF Report      |
+| GET    | /health          | Health Check             |
 
 ---
 
-# 📄 License
+## 📈 Future Enhancements
+
+* Email Notifications
+* Multi-language Support
+* Doctor Dashboard
+* Appointment Scheduling
+* Emotion Detection
+* Voice-based Assessment
+* Cloud Database Integration
+* Mobile Application
+* Advanced AI Chatbot using LLMs
+
+---
+
+## 👨‍💻 Team
+
+**TECH STORM**
+
+Project: **MindCare AI – Mental Health Counseling Tool**
+
+---
+
+## 📜 License
 
 This project is developed for educational and academic purposes.
+
+---
+
+## ⭐ Support
+
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
